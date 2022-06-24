@@ -1,4 +1,4 @@
-import * as React from 'react';
+import React, { useState } from 'react';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import NavBar from './components/NavBar';
 
@@ -12,10 +12,41 @@ import ProductoId from './pages/ProductoId';
 import './style.css';
 
 export default function App() {
+  const [nota, setNota] = useState(true);
+
   return (
     <div>
-      <h1>Hello StackBlitz!</h1>
-
+      <h1>Hola!</h1>
+      {nota ? (
+        <div>
+          <button
+            onClick={function () {
+              setNota(!nota);
+            }}
+          >
+            x
+          </button>
+          <p>
+            Gracias por la visita, revisen deteniadamente los archivos no hay un
+            orden real, se fue haciendo como fui viendo cosas.
+          </p>
+          <p>
+            Entren a la carpeta <strong>Apuntes</strong> esta detallado a mis
+            palabras cada punto que me parece importante.
+          </p>
+        </div>
+      ) : (
+        <p>
+          Visitame en{' '}
+          <a href="https://github.com/" target="_blank">
+            GitHub
+          </a>{' '}
+          o{' '}
+          <a href="https://www.linkedin.com" target="_blank">
+            LinkedIn
+          </a>
+        </p>
+      )}
       <BrowserRouter>
         <NavBar />
         <Routes>

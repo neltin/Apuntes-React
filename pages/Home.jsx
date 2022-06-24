@@ -22,19 +22,24 @@ export default function Home() {
   return (
     <div>
       <h1>Pagina Home</h1>
-      <p>Aca ejecutamos en la consola un ejemplo Promise</p>
-      <Promises />
-      <hr />
       <p>
-        <strong>Ejemplo de renderizacion condicional</strong> Si hace click
-        desaparece el input.
+        <strong>Ejemplo de renderizacion condicional:</strong>{' '}
       </p>
+      <p>
+        Se integra un setTimeout() para simular una carga, si esta cargando
+        renderiza el <strong>Loading...</strong> sino renderiza la sección
+      </p>
+      <hr />
+      <p>Si hace clickdesaparece el input.</p>
       {buscar ? <input type="text" /> : ''}
       <br />
       <br />
       <button onClick={() => setBuscar(!buscar)}>
         {buscar ? 'Ocultar input' : 'Buscar'}
       </button>
+      <hr />
+      <p>Aca ejecutamos en la consola un ejemplo Promise</p>
+      <Promises />
     </div>
   );
 }
