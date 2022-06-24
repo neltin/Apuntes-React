@@ -1,0 +1,100 @@
+//Entramos a la consola de Node.js
+1) Primero verificar que tipo de version de Node se tiene
+node -v
+2) Crear carpeta de alojamineto
+mkdir server-prueba-event
+3) Ingresamos 
+cd server-prueba-event
+4) Para empezar un proyento usamos npm init
+5) Va a crear el json ahora nos va a pedir que ingrecemos ciertos datos
+version: 0.0.0
+descripcion: prueba de Eventos
+entry point: (index.js) server.js   //puede ser cuarquier archivo
+text command: 
+git repository:
+keywords: node.js //Son tag que permiten por ejemplo GITHUB decir que se trabaja con cierta tecnologia
+
+author: Nelson Gauto
+license: (ISC) MIT  //ISC es una licencia privada y MIT licencia de codigo abierto
+
+El JSON deberia ser algo asi
+{
+  "name": "server-prueba-event",
+  "version": "0.1.0",
+  "descripcion": "prueba de Eventos",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": ["nodejs"],
+  "author": "Nelson Gauto",
+  "license": "MIT"
+}
+
+6) volvemos a la teminal code .
+7) npm install express --save //Instalar una dependencia, instalamos Express
+8) npm install body-parser  //Luego instalamos la dependencia que recibe y parsea la info
+9) npm install cors //para permitir los origenes cruzados
+9) Verificamos las dependencia en el package.json
+
+  "dependencies": {
+    "body-parser": "^1.20.0",
+    "cors": "^2.8.5",
+    "express": "^4.18.1"
+  },
+
+10) Creamos un archivo y entramos a server.js (Podemos tomar de ejemplo el siguiente link https://github.com/nicolasrestrepo/voting-api/blob/master/server.js).
+
+//Algo asi tendria qe quedar:
+
+const { createServer } = require('http'); //Nativo de Node.js
+const express = require('express'); //Micro frameword express
+const cors = require('cors'); //para permitir los origenes cruzados
+const { json, urlencoded } = require('body-parser'); //Nos permite capturar el body en el require, lo parsea para poderlo usar.
+const app = express();
+
+app.use(json({ limit: '140mb' }));
+app.use(cors());
+app.use(urlencoded({ extended: true, limit: '140mb' }));
+
+//Recibe atributos req es lo que recibe y res es lo que envia
+app.get('/character', (req, res) => {
+  return res.json({ prueba: 'hola' });
+});
+
+app.post('/form-data', (req, res) => {
+  console.log('req.body', req.body);
+  return res.json({ prueba: 'hola' });
+});
+
+const server = createServer(app);
+
+server.listen('8989', () => {
+  console.log(`server running on port 8989`);
+});
+//Fin de server.js
+
+
+11) vamos al package.json y ponemos en script una forma de inicializar en node por ejemplo start
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
+  },
+
+12) vamos a la consola entonces inicializamos el server
+nmp start 
+
+cada vez que hay que hacer un cambio crtl+c para salir y devuelta 
+npm start 
+
+13)Podemos instalar algo que nos permite guardar dependencia de desarrollo automaticamente
+
+npm install nodemon
+
+recarga el servidor si hacemos un cambio
+vamos al json y cambiamos temporalmente en script
+"start": "nodemon index.js"
+
+
+14) Nos dirigimos a url y entramos por el puerto :8989 
+localhost:8989

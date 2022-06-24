@@ -1,0 +1,41 @@
+1- Instalar Git
+2- InstaLar NodeJS
+3- Crear APP React, utilizando la consola usamos los comandos:
+	A- Instalamos un paquete React 
+		npm install -g create-react-app
+
+	B- Y crear la aplicación 
+		create-react-app my-app
+
+4- Inicializamos el React con 
+	npm start
+
+5- Crear un repositorio en gitHub y vincularlo
+	A- Crear repositorio Local
+		git init
+
+	B- Configurar datos de usuario con los del GitHub
+		git config user.name neltin
+		git config user.email gautofreelance@gmail.com
+
+	C- Configurar locacion del repositorio GitHub
+		git remote add origin https://github.com/neltin/clase1.git
+
+	D- Agregar todos los archivos que quedaron fuera (git status para ver) 
+		git add .
+
+	F- Preparar	el commit descripcion de tipo de accion qu vamos a hacer
+		git commit -m "1era prueba"	
+
+	G- Y hacer la subida de los archivos
+		git push -u origin master
+
+6- Actualiza lo que esta en el repositorio de GitHub a la carpeta local 
+		git pull origin master 		
+
+7- Para actualizar de local a remoto
+	A- git status (En rojo indica que hay diferencia)
+	B- git add . (Para preparar los archivos actualizar)
+	C- git commit -m "Actualizar"
+	D- git push -u origin master
+
