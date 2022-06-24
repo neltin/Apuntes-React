@@ -40,7 +40,7 @@ export default function Productos() {
         </li>
       </ul>
       <hr />
-
+      <p>Render condicional con Looding es falso</p>
       {loading === false
         ? items.map((item, key) => <Tarjeta {...item} />)
         : 'No hay resultados'}
