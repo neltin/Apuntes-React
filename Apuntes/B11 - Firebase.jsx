@@ -164,3 +164,56 @@ if (error) return <p>{error}</p>;
    const dataDB = snap.docs.map((doc) => ({ id: doc.id, ...doc.data() }));
    setItems(dataDB);
  })
+
+ /**
+  * Nanoid
+  * ------
+  * Nano id es una dependencia que nos sirve para url random
+  * 
+  * https://www.npmjs.com/package/nanoid
+  * npm install nanoid
+  * 
+  * lo importamos
+  */
+  import { nanoid } from 'nanoid'
+
+  /**
+   * Set datos
+   * ---------
+   * Para incorporar datos importamos setDoc()
+   * tambien podemos incorporar el Timestamp() tambien de firestore
+   * Nos permite crear tipo de datos fechas
+   */
+   import { doc, Timestamp, setDoc } from 'firebase/firestore';
+
+/**
+ * Creamos un evento por ejempo un boton
+ * ya que es una funcion tenemos que hacer un async await
+ * con try{} y cath(){}
+ * Se crean los datos y con doc() y setDoc() actualizamos los datos o creamos uno nuevo
+ */
+
+   const hacerPedido = async (event) => {
+    event.preventDefault();
+    try {
+      setLoading(true);
+      
+      //Creacion de datos
+      const buyer = doc(db, 'users', 'B2IwYTe7zyG8ISBDysQ4');
+      const addData = {
+        buyer,
+        state: 'preparacion',
+        total: 73000,
+        date: Timestamp.now(),
+        items = ['items/Wixcmem7L9gAehI4R1HI', 'items/bur2WuY2Fl7WO02bcANl']
+        id: nanoid(),
+      };
+
+      const urlParam = doc(db, 'ordenes', addData.id);
+      await setDoc(urlParam, addData);
+    } catch (error) {
+      console.log('error', error);
+    } finally {
+      setLoading(false);
+    }
+  };

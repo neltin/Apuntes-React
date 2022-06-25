@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { db } from '../firebase';
-import { addDoc, collection, doc, Timestamp } from 'firebase/firestore';
+import { doc, Timestamp, setDoc } from 'firebase/firestore';
+import { nanoid } from 'nanoid';
 
 const Cart = () => {
   const [loading, setLoading] = useState(false);
@@ -8,31 +9,28 @@ const Cart = () => {
 
   const hacerPedido = async (event) => {
     event.preventDefault();
-    setLoading(true);
-    const urlParam = collection(db, 'ordenes');
-
-    const buyer = doc(db, 'users', 'B2IwYTe7zyG8ISBDysQ4');
-
-    //Creacion de datos
-    const item1 = 'Wixcmem7L9gAehI4R1HI';
-    const item2 = 'bur2WuY2Fl7WO02bcANl';
-
-    const items = ['items/' + item1, 'items/' + item2];
-    console.log('items: ', items);
-
-    const addData = {
-      buyer,
-      state: 'preparacion',
-      total: 73000,
-      date: Timestamp.now(),
-      items,
-    };
-
     try {
-      const Datos = await addDoc(urlParam, addData);
-      console.log('Document iD: ', Datos.id);
+      setLoading(true);
+      const buyer = doc(db, 'users', 'B2IwYTe7zyG8ISBDysQ4');
 
-      idItem = Datos.id;
+      //Creacion de datos
+      const items = [
+        'items/Wixcmem7L9gAehI4R1HI',
+        'items/bur2WuY2Fl7WO02bcANl',
+      ];
+
+      const addData = {
+        buyer,
+        state: 'preparacion',
+        total: 73000,
+        date: Timestamp.now(),
+        items,
+        id: nanoid(),
+      };
+
+      const urlParam = doc(db, 'ordenes', addData.id);
+      await setDoc(urlParam, addData);
+      console.log('Se incorporaron estos datos', addData);
     } catch (error) {
       console.log('error', error);
     } finally {
