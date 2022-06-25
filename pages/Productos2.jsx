@@ -10,8 +10,16 @@ const Productos2 = () => {
 
   return (
     <>
+      <h2>Firestore</h2>
       <p>
-        <strong>Aca se le pasa a un componete Tarjeta:</strong>
+        Se creo un hook para usar firestore en una funcion{' '}
+        <strong>useFirestore()</strong>. <br />
+        El hook se encuentra en carpeta hooks. Haciendo mas limpio la
+        informacion que en la pagina producto.
+      </p>
+      <hr />
+      <p>
+        <strong>Aca se le pasa con un componete Tarjeta:</strong>
       </p>
 
       {data.map((item, key) => (

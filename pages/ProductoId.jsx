@@ -35,7 +35,7 @@ export default function ProductosId() {
   console.log(items);
   return (
     <div>
-      <h1>Pagina Productos ID</h1>
+      <h2>Pagina Productos ID</h2>
       {items.map((item) => (
         <div key={item.id}>
           <img src={item.image} />

@@ -6,7 +6,7 @@ import Comp1 from '../components/Contexto2/Comp1';
 export default function Carts() {
   return (
     <div>
-      <h1>Contexto</h1>
+      <h2>Contexto</h2>
       <p>Ejemplo de paso de propiedades Normal entre componentes</p>
       <Component1 />
       <hr />

@@ -30,7 +30,17 @@ export default function Productos() {
 
   return (
     <div>
-      <h1>Pagina Productos</h1>
+      <h2>Pagina Productos</h2>
+      {items.map((item) => (
+        <Link to={`/productos/${item.id}`}>
+          <div key={item.id}>
+            <img src={item.image} />
+            <h3>{item.title}</h3>
+            <p>{item.description}</p>
+          </div>
+        </Link>
+      ))}
+      <hr />
       <ul>
         <li>
           <Link to={`/productos/${1}`}>Detalle de productos 1</Link>
@@ -44,17 +54,6 @@ export default function Productos() {
       {loading === false
         ? items.map((item, key) => <Tarjeta {...item} />)
         : 'No hay resultados'}
-
-      <hr />
-      {items.map((item) => (
-        <Link to={`/productos/${item.id}`}>
-          <div key={item.id}>
-            <img src={item.image} />
-            <h3>{item.title}</h3>
-            <p>{item.description}</p>
-          </div>
-        </Link>
-      ))}
     </div>
   );
 }

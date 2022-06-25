@@ -69,7 +69,7 @@ export default function Category() {
 
   return (
     <div>
-      <h1>Pagina de Ejemplo de Eventos</h1>
+      <h2>Pagina de Ejemplo de Eventos</h2>
       <p>Cuando se presiona una vocal te avisa con un Alert</p>
       <input onKeyDown={verVocales} />
       <br />

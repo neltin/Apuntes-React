@@ -21,7 +21,7 @@ export default function Home() {
 
   return (
     <div>
-      <h1>Pagina Home</h1>
+      <h2>Pagina Home</h2>
       <p>
         <strong>Ejemplo de renderizacion condicional:</strong>{' '}
       </p>

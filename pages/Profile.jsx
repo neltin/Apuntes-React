@@ -4,7 +4,7 @@ import ConsumoApi from '../components/ConsumoApi';
 export default function Category() {
   return (
     <div>
-      <h1>Pagina ejemplo de Consumo de Api</h1>
+      <h2>Pagina ejemplo de Consumo de Api</h2>
 
       <ConsumoApi />
     </div>
