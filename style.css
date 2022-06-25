@@ -2,15 +2,16 @@ h1,
 p {
   font-family: Lato;
 }
-h1 {
-  margin: 20px;
+
+body {
+  padding: 20px;
 }
 .nota,
 .importante {
   display: block;
   font-size: 15px;
   padding: 20px;
-  margin: 20px;
+  margin: 20px auto;
 }
 .importante {
   background-color: #b7b166;
@@ -28,16 +29,14 @@ h1 {
   cursor: pointer;
 }
 
-nav {
-}
-
 nav ul {
   display: block;
-  padding: 10px 40px;
+  padding: 10px 20px;
   list-style: none;
 }
 
 nav ul li {
   display: inline-block;
   padding-right: 20px;
+  padding-bottom: 10px;
 }
