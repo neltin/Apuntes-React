@@ -24,6 +24,9 @@ export default function NavBar() {
           <li>
             <NavLink to="/productos2">Firestore</NavLink>
           </li>
+          <li>
+            <NavLink to="/cart">Cart</NavLink>
+          </li>          
         </ul>
       </nav>
     </div>

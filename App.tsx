@@ -9,6 +9,7 @@ import PageEvent from './pages/PageEvent';
 import Productos from './pages/Productos';
 import Productos2 from './pages/Productos2';
 import ProductoId from './pages/ProductoId';
+import Cart from './pages/Cart';
 import './style.css';
 
 export default function App() {
@@ -60,7 +61,8 @@ export default function App() {
           <Route path="/profile" element={<Profile />} />
           <Route exact path="/productos" element={<Productos />} />
           <Route exact path="/productos/:id" element={<ProductoId />} />
-          <Route exact path="/Productos2" element={<Productos2 />} />
+          <Route exact path="/productos2" element={<Productos2 />} />
+          <Route exact path="/cart" element={<Cart />} />
         </Routes>
       </BrowserRouter>
     </div>
