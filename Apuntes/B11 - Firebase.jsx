@@ -187,14 +187,13 @@ if (error) return <p>{error}</p>;
    import { doc, Timestamp, setDoc } from 'firebase/firestore';
 
 /**
- * Creamos un evento por ejempo un boton
+ * Creamos un evento por ejemplo un boton
  * ya que es una funcion tenemos que hacer un async await
  * con try{} y cath(){}
  * Se crean los datos y con doc() y setDoc() actualizamos los datos o creamos uno nuevo
  */
 
-   const hacerPedido = async (event) => {
-    event.preventDefault();
+   const hacerPedido = async () => {
     try {
       setLoading(true);
       
@@ -211,6 +210,58 @@ if (error) return <p>{error}</p>;
 
       const urlParam = doc(db, 'ordenes', addData.id);
       await setDoc(urlParam, addData);
+    } catch (error) {
+      console.log('error', error);
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  /**
+   * Add datos y updateDoc
+   * ---------------------
+   * Si no incorporamos nanoid y queremos hacerlo 
+   * con la ID entregada por FIRESTORE.
+   * Usamos addDoc(). Ademas tenemos que incorporar collection()
+   * 
+   * updateDoc: Sirve para hacer actualizaciones o incorporar datos nuevos, pero pisa todo con el setDoc();
+   */
+   import { collection, addDoc, doc, Timestamp, updateDoc } from 'firebase/firestore';
+
+   /**
+    * Como el id se nos entrega despues de hacer la carga, no se puede incorporar el id dentro del documento, asi que habra que incorporarlo si lo necesitamos.
+    * con doc() updateDoc().
+    * El id no los dan luego de que igualemos la consulta y esas docRef.id
+    */
+  try {
+    const docRef = await addDoc(collection(db, 'ordenes'), addData);
+    const urlParam = doc(db, 'ordenes', docRef.id);
+    //Incorporamos el ID
+    await updateDoc(urlParam, { id: docRef.id });
+  } catch (error) {
+    console.log('error', error);
+  } finally {
+    setLoading(false);
+  }
+
+   /**
+    * Eliminar documento
+    * ------------------
+    * Para eliminar documentos usamos deleteDoc()
+    * utilizamos un boton y como tenemos que pasar el parametro tenemos que armar un async await.
+    * Tenemos que eliminar de los datos que tenemos entonces usamos
+    * filter() y decir que arme un objeto nuevo, los datos no coincidan con el id que tenemos.
+    * 
+    * Datos.filter((item) => item.id !== id)
+    */
+  import {doc , deleteDoc } from 'firebase/firestore';
+  
+  const eliminarPedido = async (id) => {
+    try {
+      await deleteDoc(doc(db, 'ordenes', id));
+      alert('Se elimino pedido: ' + id);
+      //Eliminamos de datos.
+      setDatos(Datos.filter((item) => item.id !== id));
     } catch (error) {
       console.log('error', error);
     } finally {
